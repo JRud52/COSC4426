@@ -79,7 +79,7 @@ var r=t.propertyDataFromStyles(n._styles,this),i=!this.__notStyleScopeCacheable;
   <template>
     <style>
       .card {
-        margin: 24px;
+        margin: 12px;
         padding: 16px;
 
         color: #757575;
@@ -102,6 +102,11 @@ var r=t.propertyDataFromStyles(n._styles,this),i=!this.__notStyleScopeCacheable;
 
         font-size: 30px;
         line-height: 64px;
+      }
+
+      paper-button {
+        background-color: #4285f4;
+        color: #fff;
       }
 
       h1 {
@@ -1481,9 +1486,9 @@ var r=t.propertyDataFromStyles(n._styles,this),i=!this.__notStyleScopeCacheable;
       <app-drawer>
         <app-toolbar>Menu</app-toolbar>
         <iron-selector selected="[[page]]" attr-for-selected="name" class="drawer-list" role="navigation">
-          <a name="view1" href="/view1">View One</a>
-          <a name="view2" href="/view2">View Two</a>
-          <a name="view3" href="/view3">View Three</a>
+          <a name="view1" href="/view1">Assignment One</a>
+          <a name="view2" href="/view2">Assignment Two</a>
+          <a name="view3" href="/view3">Assignment Three</a>
         </iron-selector>
       </app-drawer>
 
@@ -1493,7 +1498,7 @@ var r=t.propertyDataFromStyles(n._styles,this),i=!this.__notStyleScopeCacheable;
         <app-header condenses="" reveals="" effects="waterfall">
           <app-toolbar>
             <paper-icon-button icon="menu" drawer-toggle=""></paper-icon-button>
-            <div main-title="">My App</div>
+            <div main-title="">COSC 4426</div>
           </app-toolbar>
         </app-header>
 

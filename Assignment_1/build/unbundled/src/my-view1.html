@@ -1,24 +1,174 @@
 <html><head><link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/paper-input/paper-textarea.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
 <link rel="import" href="shared-styles.html">
+<script src="../bower_components/crypto-js/crypto-js.js"></script>
+
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 </head><body><dom-module id="my-view1">
   <template>
     <style include="shared-styles">
       :host {
         display: block;
-
         padding: 10px;
       }
+      #title {
+        text-align: center;
+      }
+
+      #key {
+
+      }
+      #enc-container {
+        display:block;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+      .button {
+        display:block;
+        text-align: center;
+        margin-top: 10px;
+      }
+      #encrypted-message {
+        white-space: pre-wrap;      /* CSS3 */
+        white-space: -moz-pre-wrap; /* Firefox */
+        white-space: -o-pre-wrap;   /* Opera 7 */
+        word-wrap: break-word;      /* IE */
+      }
+      .document-text {
+        max-width: 750px;
+        margin: 0 auto;
+      }
+
+
+
     </style>
 
     <div class="card">
-      <div class="circle">1</div>
-      <h1>Assignment 1</h1>
-      <p>Ut labores minimum atomorum pro. Laudem tibique ut has.
-      </p><p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei vide viris gloriatur, at populo eripuit sit.</p>
+      <div id="enc-container">
+        <paper-textarea id="input-text" label="Input Text:" required="" validate="" error-message="Needs some text!"></paper-textarea>
+
+        <paper-textarea id="key" label="Key:" required="" validate="" error-message="Needs a key!"></paper-textarea>
+
+        <iron-form>
+          <paper-dropdown-menu id="dropdown" label="Encryption Algorithm:" no-animations="" required="" error-message="Select one!">
+            <paper-listbox id="algorithm" class="dropdown-content">
+              <paper-item>AES</paper-item>
+              <paper-item>TripleDES</paper-item>
+              <paper-item>RC4</paper-item>
+              <paper-item>Rabbit</paper-item>
+              <paper-item>EvpKDF</paper-item>
+            </paper-listbox>
+          </paper-dropdown-menu>
+
+          <paper-button class="button" id="encrypt-button" onclick="encryptData()">Encrypt</paper-button>
+        </iron-form>
+
+        <p id="encrypted-message"></p>
+      </div>
     </div>
+
+
+    <div class="card">
+      <h1 id="title">Cryptography</h1>
+
+      <div class="document-text">
+
+        <p>   Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud
+          exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in
+          voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur sint occaecat cupidatat non proident, sunt
+          in culpa qui officia deserunt mollit anim id est laborum.
+          Lorem ipsum dolor sit amet, consectetur adipisicing
+          elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud
+          exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in
+          voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur sint occaecat cupidatat non proident, sunt
+          in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        <p>   Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud
+          exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in
+          voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur sint occaecat cupidatat non proident, sunt
+          in culpa qui officia deserunt mollit anim id est laborum.
+          Lorem ipsum dolor sit amet, consectetur adipisicing
+          elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud
+          exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in
+          voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur sint occaecat cupidatat non proident, sunt
+          in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        <p>   Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud
+          exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in
+          voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur sint occaecat cupidatat non proident, sunt
+          in culpa qui officia deserunt mollit anim id est laborum.
+          Lorem ipsum dolor sit amet, consectetur adipisicing
+          elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud
+          exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in
+          voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur sint occaecat cupidatat non proident, sunt
+          in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        <p>   Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud
+          exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in
+          voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur sint occaecat cupidatat non proident, sunt
+          in culpa qui officia deserunt mollit anim id est laborum.
+          Lorem ipsum dolor sit amet, consectetur adipisicing
+          elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud
+          exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in
+          voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur sint occaecat cupidatat non proident, sunt
+          in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        <p>   Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud
+          exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in
+          voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur sint occaecat cupidatat non proident, sunt
+          in culpa qui officia deserunt mollit anim id est laborum.
+          Lorem ipsum dolor sit amet, consectetur adipisicing
+          elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud
+          exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in
+          voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur sint occaecat cupidatat non proident, sunt
+          in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+      </div>
+    </div>
+
+
   </template>
 
-  <script>Polymer({is:"my-view1"});</script>
+  <script>function encryptData(){var e,t=document.getElementById("input-text"),a=document.getElementById("encrypted-message"),l=document.getElementById("algorithm"),n=document.getElementById("key"),r=document.getElementById("dropdown"),c=" ";if(t.validate()&&n.validate()&&null!=l.selected){switch(r.invalid=!1,l.selected){case 0:e=CryptoJS.AES.encrypt(t.value,n.value),c="AES";break;case 1:e=CryptoJS.TripleDES.encrypt(t.value,n.value),c="TripleDES";break;case 2:e=CryptoJS.RC4.encrypt(t.value,n.value),c="RC4";break;case 3:e=CryptoJS.Rabbit.encrypt(t.value,n.value),c="Rabbit";break;case 4:e=CryptoJS.EvpKDF(t.value),c="EvpKDF"}a.innerHTML="Encrypted text using the "+c+" algorithm:</br>"+e.ciphertext}null==l.selected&&(r.invalid=!0)}Polymer({is:"my-view1"});</script>
 </dom-module>
 </body></html>

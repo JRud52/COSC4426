@@ -18,7 +18,8 @@
     "polymer": "Polymer/polymer#^1.6.0",
     "paper-input": "PolymerElements/paper-input#^1.1.18",
     "iron-elements": "PolymerElements/iron-elements#^1.0.10",
-    "paper-elements": "PolymerElements/paper-elements#^1.0.7"
+    "paper-elements": "PolymerElements/paper-elements#^1.0.7",
+    "crypto-js": "^3.1.6"
   },
   "devDependencies": {
     "web-component-tester": "^4.0.0"

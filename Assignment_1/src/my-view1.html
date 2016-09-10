@@ -5,62 +5,218 @@
 <link rel="import" href="../bower_components/paper-item/paper-item.html">
 <link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
 <link rel="import" href="shared-styles.html">
+<script src="../bower_components/crypto-js/crypto-js.js"></script>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <dom-module id="my-view1">
   <template>
     <style include="shared-styles">
       :host {
         display: block;
-
         padding: 10px;
       }
+      #title {
+        text-align: center;
+      }
+
+      #key {
+
+      }
+      #enc-container {
+        display:block;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+      .button {
+        display:block;
+        text-align: center;
+        margin-top: 10px;
+      }
+      #encrypted-message {
+        white-space: pre-wrap;      /* CSS3 */
+        white-space: -moz-pre-wrap; /* Firefox */
+        white-space: -o-pre-wrap;   /* Opera 7 */
+        word-wrap: break-word;      /* IE */
+      }
+      .document-text {
+        max-width: 750px;
+        margin: 0 auto;
+      }
+
+
+
     </style>
 
-    <div class="card">
-      <div class="circle">1</div>
-      <h1>Cryptography</h1>
+    <div class="card" >
+      <div id="enc-container" >
+        <paper-textarea id="input-text" label="Input Text:" required validate error-message="Needs some text!"></paper-textarea>
 
-      <div>
-        <paper-textarea id="inputText" label="Input Text:"></paper-textarea>
+        <paper-textarea id="key" label="Key:" required validate error-message="Needs a key!"></paper-textarea>
 
-        <paper-dropdown-menu label="Encryption Algorithm"  no-animations>
-          <paper-listbox id="algorithm" class="dropdown-content" selected="0">
-            <paper-item>Algorithm 1</paper-item>
-            <paper-item>Algorithm 2</paper-item>
-            <paper-item>Algorithm 3</paper-item>
-            <paper-item>Algorithm 4</paper-item>
-            <paper-item>Algorithm 5</paper-item>
-          </paper-listbox>
-        </paper-dropdown-menu>
+        <iron-form>
+          <paper-dropdown-menu id="dropdown" label="Encryption Algorithm:"  no-animations required error-message="Select one!">
+            <paper-listbox id="algorithm" class="dropdown-content" >
+              <paper-item>AES</paper-item>
+              <paper-item>TripleDES</paper-item>
+              <paper-item>RC4</paper-item>
+              <paper-item>Rabbit</paper-item>
+              <paper-item>EvpKDF</paper-item>
+            </paper-listbox>
+          </paper-dropdown-menu>
 
-        <paper-button id="encrypt-button">Encrypt</paper-button>
+          <paper-button class="button" id="encrypt-button" onclick="encryptData()">Encrypt</paper-button>
+        </iron-form>
 
-        <p id="encryptedMessage"></p>
-      </div>
-
-      <div>
-        <p>Ut labores minimum atomorum pro. Laudem tibique ut has.
-        <p>Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.
-          Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.Cu mei
-          vide viris gloriatur, at populo eripuit sit.</p>
+        <p id="encrypted-message"></p>
       </div>
     </div>
+
+
+    <div class="card">
+      <h1 id="title">Cryptography</h1>
+
+      <div class="document-text">
+
+        <p>   Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud
+          exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in
+          voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur sint occaecat cupidatat non proident, sunt
+          in culpa qui officia deserunt mollit anim id est laborum.
+          Lorem ipsum dolor sit amet, consectetur adipisicing
+          elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud
+          exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in
+          voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur sint occaecat cupidatat non proident, sunt
+          in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        <p>   Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud
+          exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in
+          voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur sint occaecat cupidatat non proident, sunt
+          in culpa qui officia deserunt mollit anim id est laborum.
+          Lorem ipsum dolor sit amet, consectetur adipisicing
+          elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud
+          exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in
+          voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur sint occaecat cupidatat non proident, sunt
+          in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        <p>   Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud
+          exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in
+          voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur sint occaecat cupidatat non proident, sunt
+          in culpa qui officia deserunt mollit anim id est laborum.
+          Lorem ipsum dolor sit amet, consectetur adipisicing
+          elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud
+          exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in
+          voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur sint occaecat cupidatat non proident, sunt
+          in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        <p>   Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud
+          exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in
+          voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur sint occaecat cupidatat non proident, sunt
+          in culpa qui officia deserunt mollit anim id est laborum.
+          Lorem ipsum dolor sit amet, consectetur adipisicing
+          elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud
+          exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in
+          voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur sint occaecat cupidatat non proident, sunt
+          in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+        <p>   Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+          sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud
+          exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in
+          voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur sint occaecat cupidatat non proident, sunt
+          in culpa qui officia deserunt mollit anim id est laborum.
+          Lorem ipsum dolor sit amet, consectetur adipisicing
+          elit, sed do eiusmod tempor incididunt ut labore et dolore
+          magna aliqua. Ut enim ad minim veniam, quis nostrud
+          exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in
+          voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+          Excepteur sint occaecat cupidatat non proident, sunt
+          in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+      </div>
+    </div>
+
+
   </template>
 
   <script>
     Polymer({
-      is: 'my-view1',
-      listeners: {'click':'encryptData'},
-      encryptData: function(e) {
-        if (e.target.id == "encrypt-button"){
-          var txt = document.getElementById("inputText");
-          var msg = document.getElementById("encryptedMessage");
-          var alg = document.getElementById("algorithm");
-          msg.innerHTML = "Encrypted text using the " + alg.selectedItem.innerHTML
-              + " algorithm:</br>" + txt.value;
-
-        }
-      }
+      is: 'my-view1'
     });
+
+    function encryptData() {
+
+      var txt = document.getElementById("input-text");
+      var msg = document.getElementById("encrypted-message");
+      var selected = document.getElementById("algorithm");
+      var key = document.getElementById("key");
+      var drop = document.getElementById("dropdown");
+      var enc;
+      var alg = " ";
+
+      if (txt.validate() && key.validate() && selected.selected != null) {
+        drop.invalid = false;
+        switch (selected.selected){
+          case 0:
+            enc = CryptoJS.AES.encrypt(txt.value, key.value);
+            alg = "AES";
+            break;
+          case 1:
+            enc = CryptoJS.TripleDES.encrypt(txt.value, key.value);
+            alg = "TripleDES";
+            break;
+          case 2:
+            enc = CryptoJS.RC4.encrypt(txt.value, key.value);
+            alg = "RC4";
+            break;
+          case 3:
+            enc = CryptoJS.Rabbit.encrypt(txt.value, key.value);
+            alg = "Rabbit";
+            break;
+          case 4:
+            enc = CryptoJS.EvpKDF(txt.value);
+            alg = "EvpKDF";
+            break;
+        }
+
+        msg.innerHTML = "Encrypted text using the " + alg
+            + " algorithm:</br>" + enc.ciphertext;
+      }
+      if (selected.selected == null){
+        drop.invalid = true;
+      }
+    }
+
+
   </script>
 </dom-module>
