@@ -16,7 +16,7 @@
         display: block;
         padding: 10px;
       }
-      #title {
+      .title {
         text-align: center;
       }
 
@@ -50,23 +50,24 @@
 
     <div class="card" >
       <div id="enc-container" >
+        <h1 class="title">Encrypter</h1>
         <paper-textarea id="input-text" label="Input Text:" required validate error-message="Needs some text!"></paper-textarea>
 
         <paper-textarea id="key" label="Key:" required validate error-message="Needs a key!"></paper-textarea>
 
-        <iron-form>
-          <paper-dropdown-menu id="dropdown" label="Encryption Algorithm:"  no-animations required error-message="Select one!">
-            <paper-listbox id="algorithm" class="dropdown-content" >
-              <paper-item>AES</paper-item>
-              <paper-item>TripleDES</paper-item>
-              <paper-item>RC4</paper-item>
-              <paper-item>Rabbit</paper-item>
-              <paper-item>EvpKDF</paper-item>
-            </paper-listbox>
-          </paper-dropdown-menu>
 
-          <paper-button class="button" id="encrypt-button" onclick="encryptData()">Encrypt</paper-button>
-        </iron-form>
+        <paper-dropdown-menu id="dropdown" label="Encryption Algorithm:"  no-animations required error-message="Select one!">
+          <paper-listbox id="algorithm" class="dropdown-content" >
+            <paper-item>AES</paper-item>
+            <paper-item>DES</paper-item>
+            <paper-item>TripleDES</paper-item>
+            <paper-item>RC4</paper-item>
+            <paper-item>RC4Drop</paper-item>
+            <paper-item>Rabbit</paper-item>
+          </paper-listbox>
+        </paper-dropdown-menu>
+
+        <paper-button class="button" id="encrypt-button" onclick="encryptData()">Encrypt</paper-button>
 
         <p id="encrypted-message"></p>
       </div>
@@ -74,7 +75,7 @@
 
 
     <div class="card">
-      <h1 id="title">Cryptography</h1>
+      <h1 class="title">Cryptography</h1>
 
       <div class="document-text">
 
@@ -192,25 +193,40 @@
             alg = "AES";
             break;
           case 1:
+            enc = CryptoJS.DES.encrypt(txt.value, key.value);
+            alg = "DES";
+            break;
+          case 2:
             enc = CryptoJS.TripleDES.encrypt(txt.value, key.value);
             alg = "TripleDES";
             break;
-          case 2:
+          case 3:
             enc = CryptoJS.RC4.encrypt(txt.value, key.value);
             alg = "RC4";
             break;
-          case 3:
+          case 4:
+            enc = CryptoJS.RC4Drop.encrypt(txt.value, key.value);
+            alg = "RC4Drop"
+            break;
+          case 5:
             enc = CryptoJS.Rabbit.encrypt(txt.value, key.value);
             alg = "Rabbit";
             break;
-          case 4:
-            enc = CryptoJS.EvpKDF(txt.value);
-            alg = "EvpKDF";
-            break;
         }
 
-        msg.innerHTML = "Encrypted text using the " + alg
-            + " algorithm:</br>" + enc.ciphertext;
+        var iv = enc.iv;
+        if (selected.selected == 3 || selected.selected == 4){
+          iv = "RC4 doesn't use iv.";
+        }
+
+
+        msg.innerHTML =
+            "<strong>Encrypted text using the " + alg + " algorithm:</strong></br>"
+            + "Using this key:</br>" + enc.key + "</br></br>"
+            + "Using this iv:</br>" + iv + "</br></br>"
+            + "Using this salt:</br>" + enc.salt + "</br></br>"
+            + "Using this ciphertext:</br>" + enc.ciphertext + "</br></br>"
+            + "Resulting Text in Base64:</br>" + enc;
       }
       if (selected.selected == null){
         drop.invalid = true;

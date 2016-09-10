@@ -16,7 +16,7 @@
         display: block;
         padding: 10px;
       }
-      #title {
+      .title {
         text-align: center;
       }
 
@@ -50,23 +50,24 @@
 
     <div class="card">
       <div id="enc-container">
+        <h1 class="title">Encrypter</h1>
         <paper-textarea id="input-text" label="Input Text:" required="" validate="" error-message="Needs some text!"></paper-textarea>
 
         <paper-textarea id="key" label="Key:" required="" validate="" error-message="Needs a key!"></paper-textarea>
 
-        <iron-form>
-          <paper-dropdown-menu id="dropdown" label="Encryption Algorithm:" no-animations="" required="" error-message="Select one!">
-            <paper-listbox id="algorithm" class="dropdown-content">
-              <paper-item>AES</paper-item>
-              <paper-item>TripleDES</paper-item>
-              <paper-item>RC4</paper-item>
-              <paper-item>Rabbit</paper-item>
-              <paper-item>EvpKDF</paper-item>
-            </paper-listbox>
-          </paper-dropdown-menu>
 
-          <paper-button class="button" id="encrypt-button" onclick="encryptData()">Encrypt</paper-button>
-        </iron-form>
+        <paper-dropdown-menu id="dropdown" label="Encryption Algorithm:" no-animations="" required="" error-message="Select one!">
+          <paper-listbox id="algorithm" class="dropdown-content">
+            <paper-item>AES</paper-item>
+            <paper-item>DES</paper-item>
+            <paper-item>TripleDES</paper-item>
+            <paper-item>RC4</paper-item>
+            <paper-item>RC4Drop</paper-item>
+            <paper-item>Rabbit</paper-item>
+          </paper-listbox>
+        </paper-dropdown-menu>
+
+        <paper-button class="button" id="encrypt-button" onclick="encryptData()">Encrypt</paper-button>
 
         <p id="encrypted-message"></p>
       </div>
@@ -74,7 +75,7 @@
 
 
     <div class="card">
-      <h1 id="title">Cryptography</h1>
+      <h1 class="title">Cryptography</h1>
 
       <div class="document-text">
 
@@ -169,6 +170,6 @@
 
   </template>
 
-  <script>function encryptData(){var e,t=document.getElementById("input-text"),a=document.getElementById("encrypted-message"),l=document.getElementById("algorithm"),n=document.getElementById("key"),r=document.getElementById("dropdown"),c=" ";if(t.validate()&&n.validate()&&null!=l.selected){switch(r.invalid=!1,l.selected){case 0:e=CryptoJS.AES.encrypt(t.value,n.value),c="AES";break;case 1:e=CryptoJS.TripleDES.encrypt(t.value,n.value),c="TripleDES";break;case 2:e=CryptoJS.RC4.encrypt(t.value,n.value),c="RC4";break;case 3:e=CryptoJS.Rabbit.encrypt(t.value,n.value),c="Rabbit";break;case 4:e=CryptoJS.EvpKDF(t.value),c="EvpKDF"}a.innerHTML="Encrypted text using the "+c+" algorithm:</br>"+e.ciphertext}null==l.selected&&(r.invalid=!0)}Polymer({is:"my-view1"});</script>
+  <script>function encryptData(){var e,t=document.getElementById("input-text"),r=document.getElementById("encrypted-message"),a=document.getElementById("algorithm"),n=document.getElementById("key"),l=document.getElementById("dropdown"),i=" ";if(t.validate()&&n.validate()&&null!=a.selected){switch(l.invalid=!1,a.selected){case 0:e=CryptoJS.AES.encrypt(t.value,n.value),i="AES";break;case 1:e=CryptoJS.DES.encrypt(t.value,n.value),i="DES";break;case 2:e=CryptoJS.TripleDES.encrypt(t.value,n.value),i="TripleDES";break;case 3:e=CryptoJS.RC4.encrypt(t.value,n.value),i="RC4";break;case 4:e=CryptoJS.RC4Drop.encrypt(t.value,n.value),i="RC4Drop";break;case 5:e=CryptoJS.Rabbit.encrypt(t.value,n.value),i="Rabbit"}var s=e.iv;3!=a.selected&&4!=a.selected||(s="RC4 doesn't use iv."),r.innerHTML="<strong>Encrypted text using the "+i+" algorithm:</strong></br>Using this key:</br>"+e.key+"</br></br>Using this iv:</br>"+s+"</br></br>Using this salt:</br>"+e.salt+"</br></br>Using this ciphertext:</br>"+e.ciphertext+"</br></br>Resulting Text in Base64:</br>"+e}null==a.selected&&(l.invalid=!0)}Polymer({is:"my-view1"});</script>
 </dom-module>
 </body></html>

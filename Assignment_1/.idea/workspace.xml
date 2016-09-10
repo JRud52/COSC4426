@@ -2,123 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a14f7e7e-1548-4ff0-b3c4-682b5b3ef42d" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/README.md" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bower.json" afterPath="$PROJECT_DIR$/bower.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower.json" afterPath="$PROJECT_DIR$/build/bundled/bower.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/app-layout/app-drawer-layout/app-drawer-layout.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/app-layout/app-drawer-layout/app-drawer-layout.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/app-layout/app-drawer/app-drawer.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/app-layout/app-drawer/app-drawer.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/app-layout/app-header-layout/app-header-layout.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/app-layout/app-header-layout/app-header-layout.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/app-layout/app-header/app-header.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/app-layout/app-header/app-header.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/app-layout/app-scroll-effects/app-scroll-effects-behavior.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/app-layout/app-scroll-effects/app-scroll-effects-behavior.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/app-layout/app-scroll-effects/app-scroll-effects.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/app-layout/app-scroll-effects/app-scroll-effects.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/app-layout/app-scroll-effects/effects/blend-background.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/app-layout/app-scroll-effects/effects/blend-background.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/app-layout/app-scroll-effects/effects/fade-background.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/app-layout/app-scroll-effects/effects/fade-background.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/app-layout/app-scroll-effects/effects/material.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/app-layout/app-scroll-effects/effects/material.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/app-layout/app-scroll-effects/effects/parallax-background.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/app-layout/app-scroll-effects/effects/parallax-background.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/app-layout/app-scroll-effects/effects/resize-snapped-title.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/app-layout/app-scroll-effects/effects/resize-snapped-title.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/app-layout/app-scroll-effects/effects/resize-title.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/app-layout/app-scroll-effects/effects/resize-title.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/app-layout/app-scroll-effects/effects/waterfall.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/app-layout/app-scroll-effects/effects/waterfall.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/app-layout/app-toolbar/app-toolbar.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/app-layout/app-toolbar/app-toolbar.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/app-layout/helpers/helpers.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/app-layout/helpers/helpers.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/app-route/app-location.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/app-route/app-location.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/app-route/app-route-converter-behavior.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/app-route/app-route-converter-behavior.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/app-route/app-route.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/app-route/app-route.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/iron-a11y-keys-behavior/iron-a11y-keys-behavior.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/iron-a11y-keys-behavior/iron-a11y-keys-behavior.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/iron-behaviors/iron-button-state.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/iron-behaviors/iron-button-state.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/iron-behaviors/iron-control-state.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/iron-behaviors/iron-control-state.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/iron-flex-layout/iron-flex-layout.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/iron-flex-layout/iron-flex-layout.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/iron-icon/iron-icon.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/iron-icon/iron-icon.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/iron-iconset-svg/iron-iconset-svg.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/iron-iconset-svg/iron-iconset-svg.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/iron-location/iron-location.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/iron-location/iron-location.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/iron-location/iron-query-params.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/iron-location/iron-query-params.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/iron-media-query/iron-media-query.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/iron-media-query/iron-media-query.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/iron-meta/iron-meta.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/iron-meta/iron-meta.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/iron-pages/iron-pages.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/iron-pages/iron-pages.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/iron-resizable-behavior/iron-resizable-behavior.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/iron-resizable-behavior/iron-resizable-behavior.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/iron-scroll-target-behavior/iron-scroll-target-behavior.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/iron-scroll-target-behavior/iron-scroll-target-behavior.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/iron-selector/iron-multi-selectable.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/iron-selector/iron-multi-selectable.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/iron-selector/iron-selectable.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/iron-selector/iron-selectable.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/iron-selector/iron-selection.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/iron-selector/iron-selection.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/iron-selector/iron-selector.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/iron-selector/iron-selector.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/paper-behaviors/paper-inky-focus-behavior.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/paper-behaviors/paper-inky-focus-behavior.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/paper-behaviors/paper-ripple-behavior.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/paper-behaviors/paper-ripple-behavior.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/paper-icon-button/paper-icon-button.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/paper-icon-button/paper-icon-button.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/paper-ripple/paper-ripple.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/paper-ripple/paper-ripple.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/paper-styles/color.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/paper-styles/color.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/paper-styles/default-theme.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/paper-styles/default-theme.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/polymer/polymer-micro.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/polymer/polymer-micro.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/polymer/polymer-mini.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/polymer/polymer-mini.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/polymer/polymer.html" afterPath="$PROJECT_DIR$/build/bundled/bower_components/polymer/polymer.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/bower_components/webcomponentsjs/webcomponents-lite.min.js" afterPath="$PROJECT_DIR$/build/bundled/bower_components/webcomponentsjs/webcomponents-lite.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/index.html" afterPath="$PROJECT_DIR$/build/bundled/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/manifest.json" afterPath="$PROJECT_DIR$/build/bundled/manifest.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/service-worker.js" afterPath="$PROJECT_DIR$/build/bundled/service-worker.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/src/my-app.html" afterPath="$PROJECT_DIR$/build/bundled/src/my-app.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/src/my-icons.html" afterPath="$PROJECT_DIR$/build/bundled/src/my-icons.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/src/my-view1.html" afterPath="$PROJECT_DIR$/build/bundled/src/my-view1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/src/my-view2.html" afterPath="$PROJECT_DIR$/build/bundled/src/my-view2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/src/my-view3.html" afterPath="$PROJECT_DIR$/build/bundled/src/my-view3.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/src/my-view404.html" afterPath="$PROJECT_DIR$/build/bundled/src/my-view404.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/bundled/src/shared-styles.html" afterPath="$PROJECT_DIR$/build/bundled/src/shared-styles.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower.json" afterPath="$PROJECT_DIR$/build/unbundled/bower.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/app-layout/app-drawer-layout/app-drawer-layout.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/app-layout/app-drawer-layout/app-drawer-layout.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/app-layout/app-drawer/app-drawer.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/app-layout/app-drawer/app-drawer.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/app-layout/app-header-layout/app-header-layout.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/app-layout/app-header-layout/app-header-layout.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/app-layout/app-header/app-header.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/app-layout/app-header/app-header.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/app-layout/app-scroll-effects/app-scroll-effects-behavior.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/app-layout/app-scroll-effects/app-scroll-effects-behavior.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/app-layout/app-scroll-effects/app-scroll-effects.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/app-layout/app-scroll-effects/app-scroll-effects.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/app-layout/app-scroll-effects/effects/blend-background.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/app-layout/app-scroll-effects/effects/blend-background.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/app-layout/app-scroll-effects/effects/fade-background.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/app-layout/app-scroll-effects/effects/fade-background.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/app-layout/app-scroll-effects/effects/material.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/app-layout/app-scroll-effects/effects/material.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/app-layout/app-scroll-effects/effects/parallax-background.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/app-layout/app-scroll-effects/effects/parallax-background.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/app-layout/app-scroll-effects/effects/resize-snapped-title.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/app-layout/app-scroll-effects/effects/resize-snapped-title.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/app-layout/app-scroll-effects/effects/resize-title.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/app-layout/app-scroll-effects/effects/resize-title.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/app-layout/app-scroll-effects/effects/waterfall.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/app-layout/app-scroll-effects/effects/waterfall.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/app-layout/app-toolbar/app-toolbar.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/app-layout/app-toolbar/app-toolbar.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/app-layout/helpers/helpers.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/app-layout/helpers/helpers.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/app-route/app-location.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/app-route/app-location.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/app-route/app-route-converter-behavior.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/app-route/app-route-converter-behavior.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/app-route/app-route.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/app-route/app-route.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/iron-a11y-keys-behavior/iron-a11y-keys-behavior.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/iron-a11y-keys-behavior/iron-a11y-keys-behavior.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/iron-behaviors/iron-button-state.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/iron-behaviors/iron-button-state.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/iron-behaviors/iron-control-state.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/iron-behaviors/iron-control-state.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/iron-flex-layout/iron-flex-layout.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/iron-flex-layout/iron-flex-layout.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/iron-icon/iron-icon.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/iron-icon/iron-icon.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/iron-iconset-svg/iron-iconset-svg.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/iron-iconset-svg/iron-iconset-svg.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/iron-location/iron-location.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/iron-location/iron-location.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/iron-location/iron-query-params.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/iron-location/iron-query-params.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/iron-media-query/iron-media-query.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/iron-media-query/iron-media-query.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/iron-meta/iron-meta.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/iron-meta/iron-meta.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/iron-pages/iron-pages.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/iron-pages/iron-pages.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/iron-resizable-behavior/iron-resizable-behavior.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/iron-resizable-behavior/iron-resizable-behavior.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/iron-scroll-target-behavior/iron-scroll-target-behavior.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/iron-scroll-target-behavior/iron-scroll-target-behavior.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/iron-selector/iron-multi-selectable.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/iron-selector/iron-multi-selectable.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/iron-selector/iron-selectable.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/iron-selector/iron-selectable.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/iron-selector/iron-selection.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/iron-selector/iron-selection.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/iron-selector/iron-selector.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/iron-selector/iron-selector.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/paper-behaviors/paper-inky-focus-behavior.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/paper-behaviors/paper-inky-focus-behavior.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/paper-behaviors/paper-ripple-behavior.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/paper-behaviors/paper-ripple-behavior.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/paper-icon-button/paper-icon-button.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/paper-icon-button/paper-icon-button.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/paper-ripple/paper-ripple.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/paper-ripple/paper-ripple.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/paper-styles/color.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/paper-styles/color.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/paper-styles/default-theme.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/paper-styles/default-theme.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/polymer/polymer-micro.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/polymer/polymer-micro.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/polymer/polymer-mini.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/polymer/polymer-mini.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/polymer/polymer.html" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/polymer/polymer.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/bower_components/webcomponentsjs/webcomponents-lite.min.js" afterPath="$PROJECT_DIR$/build/unbundled/bower_components/webcomponentsjs/webcomponents-lite.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/index.html" afterPath="$PROJECT_DIR$/build/unbundled/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/manifest.json" afterPath="$PROJECT_DIR$/build/unbundled/manifest.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/service-worker.js" afterPath="$PROJECT_DIR$/build/unbundled/service-worker.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/src/my-app.html" afterPath="$PROJECT_DIR$/build/unbundled/src/my-app.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/src/my-icons.html" afterPath="$PROJECT_DIR$/build/unbundled/src/my-icons.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/src/my-view1.html" afterPath="$PROJECT_DIR$/build/unbundled/src/my-view1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/src/my-view2.html" afterPath="$PROJECT_DIR$/build/unbundled/src/my-view2.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/src/my-view3.html" afterPath="$PROJECT_DIR$/build/unbundled/src/my-view3.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/src/my-view404.html" afterPath="$PROJECT_DIR$/build/unbundled/src/my-view404.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/unbundled/src/shared-styles.html" afterPath="$PROJECT_DIR$/build/unbundled/src/shared-styles.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/my-view1.html" afterPath="$PROJECT_DIR$/src/my-view1.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/shared-styles.html" afterPath="$PROJECT_DIR$/src/shared-styles.html" />
     </list>
     <ignored path="SecureWebApp.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -154,7 +39,7 @@
       <file leaf-file-name="my-app.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/my-app.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-136">
+            <state relative-caret-position="629">
               <caret line="74" column="46" selection-start-line="74" selection-start-column="46" selection-end-line="74" selection-end-column="46" />
               <folding>
                 <element signature="n#style#0;n#template#0;n#dom-module#0;n#!!top" expanded="false" />
@@ -166,9 +51,11 @@
       <file leaf-file-name="my-view1.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/my-view1.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="82" column="61" selection-start-line="82" selection-start-column="61" selection-end-line="82" selection-end-column="61" />
-              <folding />
+            <state relative-caret-position="716">
+              <caret line="228" column="39" selection-start-line="228" selection-start-column="39" selection-end-line="228" selection-end-column="39" />
+              <folding>
+                <element signature="n#div#0;n#div#1;n#template#0;n#dom-module#0;n#!!top" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -397,12 +284,13 @@
       <workItem from="1473309745109" duration="2363000" />
       <workItem from="1473351607036" duration="19875000" />
       <workItem from="1473396387572" duration="2780000" />
-      <workItem from="1473450185357" duration="17288000" />
+      <workItem from="1473450185357" duration="18332000" />
+      <workItem from="1473521038421" duration="6074000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42306000" />
+    <option name="totallyTimeSpent" value="49424000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="974" height="1047" extended-state="0" />
@@ -444,6 +332,42 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/shared-styles.html">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/my-app.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1258">
+          <caret line="74" column="46" selection-start-line="74" selection-start-column="46" selection-end-line="74" selection-end-column="46" />
+          <folding>
+            <element signature="n#style#0;n#template#0;n#dom-module#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/my-view1.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="n#div#0;n#div#1;n#template#0;n#dom-module#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/my-view2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/shared-styles.html">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
@@ -482,7 +406,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="n#div#0;n#div#1;n#template#0;n#dom-module#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -515,13 +441,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md" />
     <entry file="file://$PROJECT_DIR$/polymer.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -569,7 +489,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/my-app.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-136">
+        <state relative-caret-position="629">
           <caret line="74" column="46" selection-start-line="74" selection-start-column="46" selection-end-line="74" selection-end-column="46" />
           <folding>
             <element signature="n#style#0;n#template#0;n#dom-module#0;n#!!top" expanded="false" />
@@ -579,9 +499,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/my-view1.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="82" column="61" selection-start-line="82" selection-start-column="61" selection-end-line="82" selection-end-column="61" />
-          <folding />
+        <state relative-caret-position="716">
+          <caret line="228" column="39" selection-start-line="228" selection-start-column="39" selection-end-line="228" selection-end-column="39" />
+          <folding>
+            <element signature="n#div#0;n#div#1;n#template#0;n#dom-module#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
