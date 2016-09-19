@@ -1106,6 +1106,38 @@ this.currentTarget=t,this.defaultPrevented=!1,this.eventPhase=Event.AT_TARGET,th
 
   <script>!function(){Polymer({is:"paper-listbox",behaviors:[Polymer.IronMenuBehavior],hostAttributes:{role:"listbox"}})}();</script>
 </dom-module>
+<script>function MakePromise(t){function e(t){if("object"!=typeof this||"function"!=typeof t)throw new TypeError;this._state=null,this._value=null,this._deferreds=[],u(t,i.bind(this),r.bind(this))}function n(e){var n=this;return null===this._state?void this._deferreds.push(e):void t(function(){var t=n._state?e.onFulfilled:e.onRejected;if("function"!=typeof t)return void(n._state?e.resolve:e.reject)(n._value);var i;try{i=t(n._value)}catch(t){return void e.reject(t)}e.resolve(i)})}function i(t){try{if(t===this)throw new TypeError;if(t&&("object"==typeof t||"function"==typeof t)){var e=t.then;if("function"==typeof e)return void u(e.bind(t),i.bind(this),r.bind(this))}this._state=!0,this._value=t,o.call(this)}catch(t){r.call(this,t)}}function r(t){this._state=!1,this._value=t,o.call(this)}function o(){for(var t=0,e=this._deferreds.length;t<e;t++)n.call(this,this._deferreds[t]);this._deferreds=null}function u(t,e,n){var i=!1;try{t(function(t){i||(i=!0,e(t))},function(t){i||(i=!0,n(t))})}catch(t){if(i)return;i=!0,n(t)}}return e.prototype.catch=function(t){return this.then(null,t)},e.prototype.then=function(t,i){var r=this;return new e(function(e,o){n.call(r,{onFulfilled:t,onRejected:i,resolve:e,reject:o})})},e.resolve=function(t){return t&&"object"==typeof t&&t.constructor===e?t:new e(function(e){e(t)})},e.reject=function(t){return new e(function(e,n){n(t)})},e}"undefined"!=typeof module&&(module.exports=MakePromise);</script>
+<script>window.Promise||(window.Promise=MakePromise(Polymer.Base.async));</script>
+<script>"use strict";Polymer({is:"iron-request",hostAttributes:{hidden:!0},properties:{xhr:{type:Object,notify:!0,readOnly:!0,value:function(){return new XMLHttpRequest}},response:{type:Object,notify:!0,readOnly:!0,value:function(){return null}},status:{type:Number,notify:!0,readOnly:!0,value:0},statusText:{type:String,notify:!0,readOnly:!0,value:""},completes:{type:Object,readOnly:!0,notify:!0,value:function(){return new Promise(function(e,t){this.resolveCompletes=e,this.rejectCompletes=t}.bind(this))}},progress:{type:Object,notify:!0,readOnly:!0,value:function(){return{}}},aborted:{type:Boolean,notify:!0,readOnly:!0,value:!1},errored:{type:Boolean,notify:!0,readOnly:!0,value:!1},timedOut:{type:Boolean,notify:!0,readOnly:!0,value:!1}},get succeeded(){if(this.errored||this.aborted||this.timedOut)return!1;var e=this.xhr.status||0;return 0===e||e>=200&&e<300},send:function(e){var t=this.xhr;if(t.readyState>0)return null;t.addEventListener("progress",function(e){this._setProgress({lengthComputable:e.lengthComputable,loaded:e.loaded,total:e.total})}.bind(this)),t.addEventListener("error",function(e){this._setErrored(!0),this._updateStatus(),this.rejectCompletes(e)}.bind(this)),t.addEventListener("timeout",function(e){this._setTimedOut(!0),this._updateStatus(),this.rejectCompletes(e)}.bind(this)),t.addEventListener("abort",function(){this._updateStatus(),this.rejectCompletes(new Error("Request aborted."))}.bind(this)),t.addEventListener("loadend",function(){return this._updateStatus(),this._setResponse(this.parseResponse()),this.succeeded?void this.resolveCompletes(this):void this.rejectCompletes(new Error("The request failed with status code: "+this.xhr.status))}.bind(this)),this.url=e.url,t.open(e.method||"GET",e.url,e.async!==!1);var r={json:"application/json",text:"text/plain",html:"text/html",xml:"application/xml",arraybuffer:"application/octet-stream"}[e.handleAs],s=e.headers||Object.create(null),n=Object.create(null);for(var o in s)n[o.toLowerCase()]=s[o];if(s=n,r&&!s.accept&&(s.accept=r),Object.keys(s).forEach(function(e){/[A-Z]/.test(e)&&Polymer.Base._error("Headers must be lower case, got",e),t.setRequestHeader(e,s[e])},this),e.async!==!1){e.async&&(t.timeout=e.timeout);var i=e.handleAs;!e.jsonPrefix&&i||(i="text"),t.responseType=t._responseType=i,e.jsonPrefix&&(t._jsonPrefix=e.jsonPrefix)}t.withCredentials=!!e.withCredentials;var a=this._encodeBodyObject(e.body,s["content-type"]);return t.send(a),this.completes},parseResponse:function(){var e=this.xhr,t=e.responseType||e._responseType,r=!this.xhr.responseType,s=e._jsonPrefix&&e._jsonPrefix.length||0;try{switch(t){case"json":if(r||void 0===e.response)try{return JSON.parse(e.responseText)}catch(e){return null}return e.response;case"xml":return e.responseXML;case"blob":case"document":case"arraybuffer":return e.response;case"text":default:if(s)try{return JSON.parse(e.responseText.substring(s))}catch(e){return null}return e.responseText}}catch(e){this.rejectCompletes(new Error("Could not parse response. "+e.message))}},abort:function(){this._setAborted(!0),this.xhr.abort()},_encodeBodyObject:function(e,t){if("string"==typeof e)return e;var r=e;switch(t){case"application/json":return JSON.stringify(r);case"application/x-www-form-urlencoded":return this._wwwFormUrlEncode(r)}return e},_wwwFormUrlEncode:function(e){if(!e)return"";var t=[];return Object.keys(e).forEach(function(r){t.push(this._wwwFormUrlEncodePiece(r)+"="+this._wwwFormUrlEncodePiece(e[r]))},this),t.join("&")},_wwwFormUrlEncodePiece:function(e){return null===e?"":encodeURIComponent(e.toString().replace(/\r?\n/g,"\r\n")).replace(/%20/g,"+")},_updateStatus:function(){this._setStatus(this.xhr.status),this._setStatusText(void 0===this.xhr.statusText?"":this.xhr.statusText)}});</script>
+<script>"use strict";Polymer({is:"iron-ajax",hostAttributes:{hidden:!0},properties:{url:{type:String},params:{type:Object,value:function(){return{}}},method:{type:String,value:"GET"},headers:{type:Object,value:function(){return{}}},contentType:{type:String,value:null},body:{type:Object,value:null},sync:{type:Boolean,value:!1},handleAs:{type:String,value:"json"},withCredentials:{type:Boolean,value:!1},timeout:{type:Number,value:0},auto:{type:Boolean,value:!1},verbose:{type:Boolean,value:!1},lastRequest:{type:Object,notify:!0,readOnly:!0},loading:{type:Boolean,notify:!0,readOnly:!0},lastResponse:{type:Object,notify:!0,readOnly:!0},lastError:{type:Object,notify:!0,readOnly:!0},activeRequests:{type:Array,notify:!0,readOnly:!0,value:function(){return[]}},debounceDuration:{type:Number,value:0,notify:!0},jsonPrefix:{type:String,value:""},bubbles:{type:Boolean,value:!1},_boundHandleResponse:{type:Function,value:function(){return this._handleResponse.bind(this)}}},observers:["_requestOptionsChanged(url, method, params.*, headers, contentType, body, sync, handleAs, jsonPrefix, withCredentials, timeout, auto)"],get queryString(){var e,t,s=[];for(e in this.params)if(t=this.params[e],e=window.encodeURIComponent(e),Array.isArray(t))for(var n=0;n<t.length;n++)s.push(e+"="+window.encodeURIComponent(t[n]));else null!==t?s.push(e+"="+window.encodeURIComponent(t)):s.push(e);return s.join("&")},get requestUrl(){var e=this.queryString,t=this.url||"";if(e){var s=t.indexOf("?")>=0?"&":"?";return t+s+e}return t},get requestHeaders(){var e={},t=this.contentType;null==t&&"string"==typeof this.body&&(t="application/x-www-form-urlencoded"),t&&(e["content-type"]=t);var s;if(this.headers instanceof Object)for(s in this.headers)e[s]=this.headers[s].toString();return e},toRequestOptions:function(){return{url:this.requestUrl||"",method:this.method,headers:this.requestHeaders,body:this.body,async:!this.sync,handleAs:this.handleAs,jsonPrefix:this.jsonPrefix,withCredentials:this.withCredentials,timeout:this.timeout}},generateRequest:function(){var e=document.createElement("iron-request"),t=this.toRequestOptions();return this.push("activeRequests",e),e.completes.then(this._boundHandleResponse).catch(this._handleError.bind(this,e)).then(this._discardRequest.bind(this,e)),e.send(t),this._setLastRequest(e),this._setLoading(!0),this.fire("request",{request:e,options:t},{bubbles:this.bubbles}),this.fire("iron-ajax-request",{request:e,options:t},{bubbles:this.bubbles}),e},_handleResponse:function(e){e===this.lastRequest&&(this._setLastResponse(e.response),this._setLastError(null),this._setLoading(!1)),this.fire("response",e,{bubbles:this.bubbles}),this.fire("iron-ajax-response",e,{bubbles:this.bubbles})},_handleError:function(e,t){this.verbose&&Polymer.Base._error(t),e===this.lastRequest&&(this._setLastError({request:e,error:t,status:e.xhr.status,statusText:e.xhr.statusText,response:e.xhr.response}),this._setLastResponse(null),this._setLoading(!1)),this.fire("iron-ajax-error",{request:e,error:t},{bubbles:this.bubbles}),this.fire("error",{request:e,error:t},{bubbles:this.bubbles})},_discardRequest:function(e){var t=this.activeRequests.indexOf(e);t>-1&&this.splice("activeRequests",t,1)},_requestOptionsChanged:function(){this.debounce("generate-request",function(){null!=this.url&&this.auto&&this.generateRequest()},this.debounceDuration)}});</script>
+<script>Polymer({is:"iron-form",extends:"form",properties:{disableNativeValidationUi:{type:Boolean,value:!1},withCredentials:{type:Boolean,value:!1},contentType:{type:String,value:"application/x-www-form-urlencoded"},headers:{type:Object,value:function(){return{}}},request:{type:Object}},listeners:{"iron-form-element-register":"_registerElement","iron-form-element-unregister":"_unregisterElement",submit:"_onSubmit",reset:"_onReset"},registered:function(){var e=document.createElement("form"),t=document.createElement("input");t.setAttribute("required","true"),e.appendChild(t);var i=document.createElement("input");i.setAttribute("type","submit"),e.appendChild(i),Polymer.clientSupportsFormValidationUI=!0,e.addEventListener("submit",function(e){Polymer.clientSupportsFormValidationUI=!1,e.preventDefault()}),i.click()},ready:function(){this.request=document.createElement("iron-ajax"),this.request.addEventListener("response",this._handleFormResponse.bind(this)),this.request.addEventListener("error",this._handleFormError.bind(this)),this._customElements=[],this._customElementsInitialValues=[]},submit:function(){if(!this.noValidate&&!this.validate())return Polymer.clientSupportsFormValidationUI&&!this.disableNativeValidationUi&&this._doFakeSubmitForValidation(),void this.fire("iron-form-invalid");var e=this.serialize();this.request.url=this.getAttribute("action"),this.request.method=this.getAttribute("method"),this.request.contentType=this.contentType,this.request.withCredentials=this.withCredentials,this.request.headers=this.headers,"POST"===this.method.toUpperCase()?this.request.body=e:this.request.params=e;var t=this.fire("iron-form-presubmit",{},{cancelable:!0});t.defaultPrevented||(this.request.generateRequest(),this.fire("iron-form-submit",e))},_onSubmit:function(e){return this.submit(),e&&e.preventDefault(),!1},_onReset:function(e){this._resetCustomElements()},serialize:function(){function e(e,t){i[e]?(Array.isArray(i[e])||(i[e]=[i[e]]),i[e].push(t)):i[e]=t}for(var t,i={},s=0;t=this._customElements[s],s<this._customElements.length;s++)!this._isChildOfRegisteredParent(t,!0)&&this._useValue(t)&&e(t.name,t.value);for(var t,s=0;t=this.elements[s],s<this.elements.length;s++)if(!this._isChildOfRegisteredParent(t,!0)&&this._useValue(t))if("select"===t.tagName.toLowerCase()&&t.multiple)for(var r=0;r<t.options.length;r++)t.options[r].selected&&e(t.name,t.options[r].value);else e(t.name,t.value);return i},_handleFormResponse:function(e){this.fire("iron-form-response",e.detail)},_handleFormError:function(e){this.fire("iron-form-error",e.detail)},_registerElement:function(e){var t=Polymer.dom(e).rootTarget;t._parentForm=this,this._customElements.push(t),this._customElementsInitialValues.push(this._usesCheckedInsteadOfValue(t)?t.checked:t.value)},_unregisterElement:function(e){var t=e.detail.target;if(t){var i=this._customElements.indexOf(t);i>-1&&(this._customElements.splice(i,1),this._customElementsInitialValues.splice(i,1))}},validate:function(){for(var e,t,i=!0,s=0;t=this._customElements[s],s<this._customElements.length;s++)this._isChildOfRegisteredParent(t,!1)||t.disabled||(e=t,e.validate&&(i=!!e.validate()&&i));for(var t,s=0;t=this.elements[s],s<this.elements.length;s++)this._isChildOfRegisteredParent(t,!1)||!t.hasAttribute("is")&&t.willValidate&&t.checkValidity&&(i=t.checkValidity()&&i);return i},_usesCheckedInsteadOfValue:function(e){return!("checkbox"!=e.type&&"radio"!=e.type&&"checkbox"!=e.getAttribute("role")&&"radio"!=e.getAttribute("role")&&!e._hasIronCheckedElementBehavior)},_useValue:function(e){return!(e.disabled||!e.name)&&(!this._usesCheckedInsteadOfValue(e)||e.checked)},_doFakeSubmitForValidation:function(){var e=document.createElement("input");e.setAttribute("type","submit"),e.style.display="none",this.appendChild(e),e.click(),this.removeChild(e)},_resetCustomElements:function(){this.async(function(){for(var e,t=0;e=this._customElements[t],t<this._customElements.length;t++)if(!e.disabled){if(this._usesCheckedInsteadOfValue(e))e.checked=this._customElementsInitialValues[t];else{var i=this._customElementsInitialValues[t];void 0===i&&(i=null),e.value=i,e.inputElement?e.inputElement.value=e.value:e.textarea&&(e.textarea.value=e.value)}e.invalid=!1}this.fire("iron-form-reset")},1)},_isChildOfRegisteredParent:function(e,t){for(var i=e;i&&i!==document&&i!=this;)if(i=Polymer.dom(i).parentNode||i.host,i&&(!t||i.name)&&i._parentForm===this)return!0;return!1}});</script>
+<dom-module id="iron-collapse" assetpath="../bower_components/iron-collapse/">
+
+  <template>
+
+    <style>
+      :host {
+        display: block;
+        transition-duration: var(--iron-collapse-transition-duration, 300ms);
+        overflow: visible;
+      }
+
+      :host(.iron-collapse-closed) {
+        display: none;
+      }
+
+      :host(:not(.iron-collapse-opened)) {
+        overflow: hidden;
+      }
+    </style>
+
+    <content></content>
+
+  </template>
+
+</dom-module>
+
+<script>Polymer({is:"iron-collapse",behaviors:[Polymer.IronResizableBehavior],properties:{horizontal:{type:Boolean,value:!1,observer:"_horizontalChanged"},opened:{type:Boolean,value:!1,notify:!0,observer:"_openedChanged"},noAnimation:{type:Boolean},_desiredSize:{type:String,value:""}},get dimension(){return this.horizontal?"width":"height"},get _dimensionMax(){return this.horizontal?"maxWidth":"maxHeight"},get _dimensionMaxCss(){return this.horizontal?"max-width":"max-height"},hostAttributes:{role:"group","aria-hidden":"true","aria-expanded":"false"},listeners:{transitionend:"_transitionEnd"},attached:function(){this._transitionEnd()},toggle:function(){this.opened=!this.opened},show:function(){this.opened=!0},hide:function(){this.opened=!1},updateSize:function(i,t){if(i="auto"===i?"":i,this._desiredSize!==i){this._desiredSize=i,this._updateTransition(!1);var e=t&&!this.noAnimation&&this._isDisplayed;if(e){var n=this._calcSize();""===i&&(this.style[this._dimensionMax]="",i=this._calcSize()),this.style[this._dimensionMax]=n,this.scrollTop=this.scrollTop,this._updateTransition(!0),e=i!==n}this.style[this._dimensionMax]=i,e||this._transitionEnd()}},enableTransition:function(i){Polymer.Base._warn("`enableTransition()` is deprecated, use `noAnimation` instead."),this.noAnimation=!i},_updateTransition:function(i){this.style.transitionDuration=i&&!this.noAnimation?"":"0s"},_horizontalChanged:function(){this.style.transitionProperty=this._dimensionMaxCss;var i="maxWidth"===this._dimensionMax?"maxHeight":"maxWidth";this.style[i]="",this.updateSize(this.opened?"auto":"0px",!1)},_openedChanged:function(){this.setAttribute("aria-expanded",this.opened),this.setAttribute("aria-hidden",!this.opened),this.toggleClass("iron-collapse-closed",!1),this.toggleClass("iron-collapse-opened",!1),this.updateSize(this.opened?"auto":"0px",!0),this.opened&&this.focus()},_transitionEnd:function(){this.style[this._dimensionMax]=this._desiredSize,this.toggleClass("iron-collapse-closed",!this.opened),this.toggleClass("iron-collapse-opened",this.opened),this._updateTransition(!1),this.notifyResize()},get _isDisplayed(){var i=this.getBoundingClientRect();for(var t in i)if(0!==i[t])return!0;return!1},_calcSize:function(){return this.getBoundingClientRect()[this.dimension]+"px"}});</script>
 </div><dom-module id="my-view1">
   <template>
     <style include="shared-styles">
@@ -1116,157 +1148,162 @@ this.currentTarget=t,this.defaultPrevented=!1,this.eventPhase=Event.AT_TARGET,th
       .title {
         text-align: center;
       }
-
-      #key {
-
-      }
-      #enc-container {
+      #enc_container {
         display:block;
         max-width: 500px;
         margin: 0 auto;
       }
       .button {
-        display:block;
-        text-align: center;
-        margin-top: 10px;
+        width:100%;
+        margin: 15px 0 15px 0;
       }
-      #encrypted-message {
+      .card {
+        padding-left: 0;
+        padding-right: 0;
+      }
+      #encrypted_message {
         white-space: pre-wrap;      /* CSS3 */
         white-space: -moz-pre-wrap; /* Firefox */
         white-space: -o-pre-wrap;   /* Opera 7 */
         word-wrap: break-word;      /* IE */
+        max-width: 500px;
+        margin:0 auto;
+
       }
-      .document-text {
+      .document_text {
         max-width: 750px;
         margin: 0 auto;
       }
+      #dropdown_container {
+        display: block;
+      }
+      #collapse {
+        background-color: #EEEEEE;
+        width:100%;
+        margin-top:10px;
+        margin-bottom: 10px;
+        padding-top:10px;
+        padding-bottom: 10px;
 
-
-
+      }
     </style>
 
     <div class="card">
-      <div id="enc-container">
+      <form is="iron-form" id="enc_container" name="form">
         <h1 class="title">Encrypter</h1>
-        <paper-textarea id="input-text" label="Input Text:" required="" validate="" error-message="Needs some text!"></paper-textarea>
+        <paper-textarea name="input_text" id="input_text" label="Input Text:" required="" error-message="Needs some text!"></paper-textarea>
 
-        <paper-textarea id="key" label="Key:" required="" validate="" error-message="Needs a key!"></paper-textarea>
+        <paper-textarea name="key" id="key" label="Passphrase:" required="" error-message="Needs a passphrase!"></paper-textarea>
 
+        <div id="dropdown_container">
+          <paper-dropdown-menu id="dropdown" label="Encryption Algorithm:" no-animations="" required="" error-message="Select one!">
+            <paper-listbox name="algorithm" id="algorithm" class="dropdown-content">
+              <paper-item>AES</paper-item>
+              <paper-item>DES</paper-item>
+              <paper-item>TripleDES</paper-item>
+              <paper-item>RC4</paper-item>
+              <paper-item>RC4Drop</paper-item>
+              <paper-item>Rabbit</paper-item>
+            </paper-listbox>
+          </paper-dropdown-menu>
+        </div>
 
-        <paper-dropdown-menu id="dropdown" label="Encryption Algorithm:" no-animations="" required="" error-message="Select one!">
-          <paper-listbox id="algorithm" class="dropdown-content">
-            <paper-item>AES</paper-item>
-            <paper-item>DES</paper-item>
-            <paper-item>TripleDES</paper-item>
-            <paper-item>RC4</paper-item>
-            <paper-item>RC4Drop</paper-item>
-            <paper-item>Rabbit</paper-item>
-          </paper-listbox>
-        </paper-dropdown-menu>
+        <paper-button name="encrypt_button" class="button" id="encrypt_button">Encrypt</paper-button>
+        
 
-        <paper-button class="button" id="encrypt-button" onclick="encryptData()">Encrypt</paper-button>
+      </form>
 
-        <p id="encrypted-message"></p>
-      </div>
+      <iron-collapse id="collapse">
+        <p name="encrypted_message" id="encrypted_message">fsdfgsfdgsdfgsdfgs</p>
+      </iron-collapse>
+
     </div>
+
 
 
     <div class="card">
       <h1 class="title">Cryptography</h1>
 
-      <div class="document-text">
+      <div class="document_text">
 
-        <p>   Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-          sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis nostrud
-          exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in
-          voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          Excepteur sint occaecat cupidatat non proident, sunt
-          in culpa qui officia deserunt mollit anim id est laborum.
-          Lorem ipsum dolor sit amet, consectetur adipisicing
-          elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis nostrud
-          exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in
-          voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          Excepteur sint occaecat cupidatat non proident, sunt
-          in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>   AES (Advanced Encryption Standard) is a symmetric and iterative block cipher encryption
+          algorithm. It has a block length of 128 bits and a key length of 128, 192 or 256-bits. If the length
+          isn’t provided, the CryptoJS library generates a 256-bit key using the passphrase given. It works by
+          encrypting the data with substitutions and permutations. When the data is processed, it is done so as
+          a 16 x 16-byte matrix. The algorithm consists of a variable number of rounds, each with 4 stages. If
+          the key is 128-bits, the algorithm will run for 10 rounds. For 192-bit this increases to 12, and for
+          256-bit it increases again to 14. Each round has its own 128 bit “round key” that is generated from the
+          original key. The first stage in encrypting the plaintext is to arrange the input into a 16x16-byte matrix.
+          In the second stage, each of the rows is shifted to the left except the first row. The second row is shifted
+          one byte, the third is shifted two bytes, and the last row is shifted three bytes. The bytes that overflow
+          are moved into the empty space that is left where the first byte started. After this is done, stage three takes
+          each column and uses a mathematical function to output four new bytes for each column. This new matrix is then
+          changed back to 128 bits and XORed with the 128 bits of the round key. If it is the last round, then the
+          resulting ciphertext is outputted, but if it isn’t the last round, then the output becomes the input for first
+          stage of the next round. The resulting ciphertext will always be 128-bits. The decryption process is the
+          reverse of the encryption.</p>
 
-        <p>   Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-          sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis nostrud
-          exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in
-          voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          Excepteur sint occaecat cupidatat non proident, sunt
-          in culpa qui officia deserunt mollit anim id est laborum.
-          Lorem ipsum dolor sit amet, consectetur adipisicing
-          elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis nostrud
-          exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in
-          voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          Excepteur sint occaecat cupidatat non proident, sunt
-          in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>DES (Data Encryption Standard) is an early Feistel Cipher encryption algorithm. It has a block size and a
+          key size of 64-bits, but since 8 of the bits aren’t used for the key, it essentially has a key size of
+          56-bits. There are 16 rounds in the cipher, and each round has a 48-bit key generated from the 56-bit cipher
+          key, which means that there are sixteen 48-bit keys used in the encryption algorithm. The first stage in the
+          algorithm is to perform the initial permutation of the data. The second stage is to run the data through 16
+          rounds of the DES function, which applies a 48-bit key to the rightmost 32 bits. This is done by expanding the
+          32-bit block into 48 bits using an expansion permutation(duplicating half of the bits). The result of this
+          is then combined with one of the 16 subkeys using an XOR operation. The result of the previous step is then
+          divided into eight 6-bit pieces and each piece is processed with a “substitution box”. This is where each
+          piece replaces six input bits with four output bits based on a lookup table. The outputs of the s-boxes are
+          then put through a “fixed permutation”, where each of the s-boxe’s output bits are spread across four
+          different S-boxes in the next round. This produces a 32-bit result which is used as input for the next round.
+          In the last round, the output of the last stage is not used as input, but is the resulting ciphertext.</p>
 
-        <p>   Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-          sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis nostrud
-          exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in
-          voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          Excepteur sint occaecat cupidatat non proident, sunt
-          in culpa qui officia deserunt mollit anim id est laborum.
-          Lorem ipsum dolor sit amet, consectetur adipisicing
-          elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis nostrud
-          exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in
-          voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          Excepteur sint occaecat cupidatat non proident, sunt
-          in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>DES is pretty easy to break with an exhaustive key search due to the small key size, so there came the need
+          for a stronger encryption method. That method became TripleDES. TripleDES has a key length of 168-bits,
+          which is actually 3x56-bit keys. The first stage is to encrypt the data using DES and the first key. The
+          second stage is to decrypt the output of the first stage using DES and the second key. The third and final
+          step is to encrypt it again using DES and the third key. The resulting 64-bit output is the ciphertext.</p>
 
-        <p>   Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-          sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis nostrud
-          exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in
-          voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          Excepteur sint occaecat cupidatat non proident, sunt
-          in culpa qui officia deserunt mollit anim id est laborum.
-          Lorem ipsum dolor sit amet, consectetur adipisicing
-          elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis nostrud
-          exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in
-          voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          Excepteur sint occaecat cupidatat non proident, sunt
-          in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>RC4 is an encryption algorithm that uses a shared key. RC4 uses a keystream which is a pseudo-random stream
+          of bits. This is combined with the plaintext using bitwise XOR. To create the keystream, the cipher takes a
+          permutation of all 256 possible bytes, then a KSA (key scheduling algorithm) is used to initialize the
+          permutation with a variable length key that is typically between 40 and 256 bits. The stream of bits is
+          then generated by a pseudo-random generation algorithm and XORed with the plaintext. The KSA works by setting
+          the key length of the algorithm to the number of bytes in the key. The key can range from 1-256. The key
+          length is usually between 5 and 16 and will corespoond to a key length of between 40 and 128 bits. The
+          permutation of possible keys is then initialized with the identity permutation of the key. The pseudo-random
+          generation works by choosing an output byte using a mathematical function and outputting it to be XORed
+          with the plaintext. The algorithm will continue to output bytes from the keystream for as many iterations as
+          required by the algorithm to completely encrypt the plaintext.</p>
 
-        <p>   Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-          sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis nostrud
-          exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in
-          voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          Excepteur sint occaecat cupidatat non proident, sunt
-          in culpa qui officia deserunt mollit anim id est laborum.
-          Lorem ipsum dolor sit amet, consectetur adipisicing
-          elit, sed do eiusmod tempor incididunt ut labore et dolore
-          magna aliqua. Ut enim ad minim veniam, quis nostrud
-          exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in
-          voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          Excepteur sint occaecat cupidatat non proident, sunt
-          in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>RC4-drop[n] was created to solve a problem in RC4 where there would be a certain number of bytes at the
+          beginning of the keystream that were always the same after each encryption. This was fixed by stripping
+          the first n bytes from the keystream. The rest of the algorithm is mostly the same as RC4.</p>
+
+        <p>Rabbit is similar to RC4 as it uses a bitstream generator that utilizes a 128-bit key and a 64-bit IV.
+          The plaintext is encrypted in blocks of 128 bits. The encryption is performed by combining the bitstream
+          with the plaintext with an XOR operation to create the ciphertext. It uses a slightly different way to get
+          the random bitstream byte, but the process is essentially the same as RC4. It encrypts a block of 128 bits
+          per iteration and rotates inner states between iterations. It uses a mixing function that entirely uses
+          arithmetical operations that are available on modern processors so it is a very fast algorithm.</p>
+
+        <p>Out of all the encryption algorithms that this program uses, I would most likely only use AES and RC4-drop[n].
+          Rabbit is not a good choice since it is so similar to RC4 but has a smaller key size. Rc4-drop[n] is
+          basically just a better version of it. I would not use DES because of the very small key length and its
+          vulnerability to brute force attacks makes it a very bad choice. TripleDES is harder to crack than DES,
+          but is still vulnerable to exhaustive key searches. TripleDES is also inferior to AES seeing as AES was
+          created to replace DES and TripleDES. AES bettered the DES algorithm by being a symmetric and iterative
+          block cipher. This makes it VERY strong against attempts to crack it. RC4-drop[n] is also a good choice
+          because it gets rid of the vulnerability of RC4 where the first few bytes were always the same between
+          encryptions. Since it uses a keystream to encrypt the plaintext, it is very secure and the encryption time
+          is fast. This makes it ideal for SSL on websites and is the main reason that it is so widely used.</p>
 
       </div>
     </div>
 
-
   </template>
 
-  <script>function encryptData(){var e,t=document.getElementById("input-text"),r=document.getElementById("encrypted-message"),a=document.getElementById("algorithm"),n=document.getElementById("key"),l=document.getElementById("dropdown"),i=" ";if(t.validate()&&n.validate()&&null!=a.selected){switch(l.invalid=!1,a.selected){case 0:e=CryptoJS.AES.encrypt(t.value,n.value),i="AES";break;case 1:e=CryptoJS.DES.encrypt(t.value,n.value),i="DES";break;case 2:e=CryptoJS.TripleDES.encrypt(t.value,n.value),i="TripleDES";break;case 3:e=CryptoJS.RC4.encrypt(t.value,n.value),i="RC4";break;case 4:e=CryptoJS.RC4Drop.encrypt(t.value,n.value),i="RC4Drop";break;case 5:e=CryptoJS.Rabbit.encrypt(t.value,n.value),i="Rabbit"}var s=e.iv;3!=a.selected&&4!=a.selected||(s="RC4 doesn't use iv."),r.innerHTML="<strong>Encrypted text using the "+i+" algorithm:</strong></br>Using this key:</br>"+e.key+"</br></br>Using this iv:</br>"+s+"</br></br>Using this salt:</br>"+e.salt+"</br></br>Using this ciphertext:</br>"+e.ciphertext+"</br></br>Resulting Text in Base64:</br>"+e}null==a.selected&&(l.invalid=!0)}Polymer({is:"my-view1"});</script>
+  <script>Polymer({is:"my-view1",ready:function(){var e=this.$.encrypt_button;this.$.decrypt_button;e.addEventListener("click",function(){var e,t=document.getElementById("input_text"),r=document.getElementById("encrypted_message"),n=document.getElementById("algorithm"),a=document.getElementById("key"),l=document.getElementById("dropdown"),i=document.getElementById("collapse"),c=" ",s=!0;if(t.validate()||(s=!1),a.validate()||(s=!1),null==n.selected&&(l.invalid=!0,s=!1),s){switch(l.invalid=!1,n.selected){case 0:e=CryptoJS.AES.encrypt(t.value,a.value),c="AES";break;case 1:e=CryptoJS.DES.encrypt(t.value,a.value),c="DES";break;case 2:e=CryptoJS.TripleDES.encrypt(t.value,a.value),c="TripleDES";break;case 3:e=CryptoJS.RC4.encrypt(t.value,a.value),c="RC4";break;case 4:e=CryptoJS.RC4Drop.encrypt(t.value,a.value),c="RC4Drop";break;case 5:e=CryptoJS.Rabbit.encrypt(t.value,a.value),c="Rabbit"}var d=e.iv;3!=n.selected&&4!=n.selected||(d="RC4 doesn't use iv."),r.innerHTML="<strong>Encrypted text using the "+c+" algorithm:</strong></br>Using this key:</br>"+e.key+"</br></br>Using this iv:</br>"+d+"</br></br>Using this salt:</br>"+e.salt+"</br></br>Resulting ciphertext:</br>"+e.ciphertext}i.show()})}});</script>
+
+
 </dom-module>
 </body></html>
