@@ -1,4 +1,7 @@
 <link rel="import" href="../bower_components/polymer/polymer.html">
+<link rel="import" href="../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../bower_components/paper-input/paper-input.html">
+
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="my-view2">
@@ -12,10 +15,20 @@
     </style>
 
     <div class="card">
-      <div class="circle">2</div>
+      <form is="iron-form" name="form" action="login.php" method="POST">
+        <paper-input label="Username:" required error-message="That username is incorrect."></paper-input>
+        <paper-input label="Password:" required error-message="That password is incorrect."></paper-input>
+        <paper-button type="Submit">Login</paper-button>
+      </form>
+
+
+    </div>
+
+    <div class="card">
       <h1>Secure Login Web App</h1>
       <p>Ea duis bonorum nec, falli paulo aliquid ei eum.</p>
-      <p>Id nam odio natum malorum, tibique copiosae expetenda mel ea.Detracto suavitate repudiandae no eum. Id adhuc minim soluta nam.Id nam odio natum malorum, tibique copiosae expetenda mel ea.</p>
+      <p>Id nam odio natum malorum, tibique copiosae expetenda mel ea.Detracto suavitate repudiandae no eum.
+        Id adhuc minim soluta nam.Id nam odio natum malorum, tibique copiosae expetenda mel ea.</p>
     </div>
   </template>
 
