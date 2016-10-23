@@ -95,7 +95,62 @@
                             $conn = null;
 
                     echo '</div>';
+
+
+
+                    echo "<div class='mdl-card mdl-shadow--4dp main-card'>";
+                    echo "<h4>Suspicious login attempts:</h4>";
+
+                            try {
+                               $conn = new PDO("mysql:host=$servername;dbname=$db_name", $db_username, $db_password);
+                               $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                                $sql = $conn->prepare("SELECT username, time_stamp, flagged FROM login_attempts");
+                                $sql->execute();
+                                $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+                                echo "<table cellpadding=5 cellspacing=5 >
+                                        <tr>
+                                        <th style='text-align: left'>Username</th>
+                                        <th style='text-align: right'>Flagged</th>
+                                        </tr>";
+
+                                $count = 0;
+                                $current_user;
+                                foreach ($result as $row => $list_item){
+                                    if ($list_item['flagged'] == 1) {
+                                        echo "<tr><td>".$list_item['username']."</td> <td style='text-align: right'>special characters</td></tr>";
+                                    }
+                                    if ($current_user == null || $current_user != $list_item['username']){
+                                        $current_user = $list_item['username'];
+                                        $count = 0;
+                                    }
+                                    else {
+                                        $count++;
+                                    }
+                                    if ($count >= 5){
+                                        echo "<tr><td>".$list_item['username']."</td> <td style='text-align: right'> tried logging in ".$count." times</td></tr>";
+                                    }
+
+                                }
+                                echo "</table>";
+                           }
+                           catch(PDOException $e) {
+                               echo "Something went wrong...";
+                           }
+                            $conn = null;
+
+                    echo '</div>';
+
+
+
+
+
                     }?>
+
+
+
+
 
                     <div class='mdl-card mdl-shadow--4dp main-card'>
                         <h4>Add a comment:</h4>

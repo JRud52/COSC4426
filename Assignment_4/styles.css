@@ -68,3 +68,6 @@ select {
 .logout-btn:hover {
     background-color: white;
 }
+table {
+    width: 100%;
+}

@@ -57,6 +57,7 @@
                 $username = $password = "";
                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
+                    $flagged = 0;
                     $continue = true;
 
                     if (empty($_POST["user-input"])) {
@@ -64,16 +65,22 @@
                     }
                     else {
                         $username = fix_input($_POST["user-input"]);
+                        if ($username != $_POST["user-input"]){
+                            $flagged = 1;
+                        }
                     }
                     if (empty($_POST["pass-input"])) {
                         $continue = false;
                     }
                     else {
                         $password = fix_input($_POST["pass-input"]);
+                        if ($password != $_POST["pass-input"]){
+                            $flagged = 1;
+                        }
                     }
 
                     if ($continue == true) {
-                        connect_db($username, $password);
+                        connect_db($username, $password, $flagged);
                     }
                 }
 
@@ -84,7 +91,7 @@
                     return $data;
                 }
 
-                function connect_db($user, $pass) {
+                function connect_db($user, $pass, $flag) {
                     $servername = "db.justinrhude.com";
                     $db_username = "jr_db_access";
                     $db_password = "helloworld3";
@@ -93,6 +100,10 @@
                     try {
                        $conn = new PDO("mysql:host=$servername;dbname=$db_name", $db_username, $db_password);
                        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+                       $sql = $conn->prepare("INSERT INTO login_attempts (username, time_stamp, flagged) VALUES ('".$user."', '".date('Y/m/d H:i:s')."', ".$flag.")");
+                       $sql->execute();
+
                         $sql = $conn->prepare("SELECT username, password, privilages FROM users WHERE username='$user'");
                         $sql->execute();
                         $result = $sql->fetch(PDO::FETCH_ASSOC);
@@ -106,7 +117,7 @@
                         }
                    }
                    catch(PDOException $e) {
-                       echo "That username is already taken.";
+                       echo "That is not valid.";
                    }
                     $conn = null;
                 }
