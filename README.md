@@ -1,2 +1,2 @@
 # COSC4426
-https://justinrhude.com
+Web apps for the Security Course at Algoma University.
